@@ -1,0 +1,29 @@
+{
+  "name": "twimg",
+  "version": "0.0.1",
+  "description": "Browse twitter home timeline by media only",
+  "license": "MIT",
+  "homepage": "https://github.com/phortuin/twimg",
+  "author": {
+    "name": "Anne Fortuin",
+    "url": "phortuin.nl"
+  },
+  "repository": "phortuin/now-dropbox-journal",
+  "engines": {
+    "node": ">=12"
+  },
+  "scripts": {
+    "build": "run-s build:*",
+    "build:static": "ncp src/static public",
+    "dev:vercel": "vercel dev --listen 3050"
+  },
+  "dependencies": {
+    "mustache": "^4.0.1",
+    "twitter-lite": "^0.13.0",
+    "vercel": "^19.0.1"
+  },
+  "devDependencies": {
+    "ncp": "^2.0.0",
+    "npm-run-all": "^4.1.5"
+  }
+}
