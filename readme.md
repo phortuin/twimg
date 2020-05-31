@@ -1,6 +1,6 @@
 # T/W/I/M/G
 
-> Browse twitter home timeline by images only
+> Browse twitter home timeline by media only
 
 One-page website that renders tweets from your home timeline that have media attached (image, video). Images shown in a large format, easy to right-click-save.
 
