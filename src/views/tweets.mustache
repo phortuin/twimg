@@ -5,7 +5,7 @@
 	<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 	<meta http-equiv="x-ua-compatible" content="ie=edge">
 	<title>T/W/I/M/G</title>
-    <link rel="stylesheet" href="/styles.css">
+	<link rel="stylesheet" href="/styles.css">
 </head>
 
 <body>
@@ -17,25 +17,25 @@
 		</code>
 	</pre>
 	<ol>
-	    {{# tweets }}
-	    <li>
-	        <figure>
-	            {{# media }}
-	            	<div class="media media__{{ type }}">
-	                	<img src="{{ url }}">
-	                </div>
-	            {{/ media }}
-	            <figcaption>
-	                ↑ <strong>{{ name }}</strong>
-	                {{ text }}
-	                <a href="https://twitter.com/{{ handle }}/status/{{ id }}">Link ↗</a>
-	            </figcaption>
-	        </figure>
-	    </li>
-	    {{/ tweets }}
-	    <li>
-	        <a href="/?id={{ lastTweet.id }}">Next batch &rarr;</a>
-	    </li>
+		{{# tweets }}
+		<li>
+			<figure>
+				{{# media }}
+					<div class="media media__{{ type }}">
+						<img src="{{ url }}">
+					</div>
+				{{/ media }}
+				<figcaption>
+					↑ <strong>{{ name }}</strong>
+					{{ text }}
+					<a href="https://twitter.com/{{ handle }}/status/{{ id }}">Link ↗</a>
+				</figcaption>
+			</figure>
+		</li>
+		{{/ tweets }}
+		<li>
+			<a href="/?id={{ lastTweet.id }}">Next batch &rarr;</a>
+		</li>
 	</ol>
 
 </body>
