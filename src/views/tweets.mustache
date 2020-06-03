@@ -10,33 +10,43 @@
 
 <body>
 
-	<pre>
-		<code>
-			{{ rateLimit.remaining }} / {{ rateLimit.limit }} requests remaining
+	<div class="meta rate__header" role="dialog" aria-labelledby="rate-title" aria-describedby="rate-description">
+		<span id="rate-title">Rate info</span>:<br>
+		<span id="rate-description">
+			{{ rateLimit.remaining }} / {{ rateLimit.limit }} requests remaining<br>
 			Rate limit reset in {{ rateLimit.minutesToReset }} minutes
-		</code>
-	</pre>
-	<ol>
-		{{# tweets }}
-		<li>
-			<figure>
-				{{# media }}
-					<div class="media media__{{ type }}">
-						<img src="{{ url }}">
-					</div>
-				{{/ media }}
-				<figcaption>
-					↑ <strong>{{ name }}</strong>
-					{{ text }}
-					<a href="https://twitter.com/{{ handle }}/status/{{ id }}">Link ↗</a>
-				</figcaption>
-			</figure>
-		</li>
-		{{/ tweets }}
-		<li>
-			<a href="/?id={{ lastTweet.id }}">Next batch &rarr;</a>
-		</li>
-	</ol>
+		</span>
+	</div>
+
+	<main role="main">
+		<ol class="tweets">
+			{{# tweets }}
+			<li>
+				<figure>
+					<ul class="media__list">
+					{{# media }}
+						<li class="media media__{{ type }}">
+							<img src="{{ url }}">
+						</li>
+					{{/ media }}
+					</ul>
+					<figcaption class="tweet">
+						<p class="tweet__text">{{{ text }}}</p>
+						<a href="https://twitter.com/{{ handle }}/status/{{ id }}" class="meta tweet__meta">
+							<span class="tweet__user">{{ name }} (@{{ handle }})</span>
+							{{# rt }}<span class="tweet__via">RT’d by {{ via_name }} (@{{ via_handle }})</span>{{/ rt }}
+							/ Open&nbsp;twitter&nbsp;&rarr;
+						</a>
+					</figcaption>
+				</figure>
+			</li>
+			{{/ tweets }}
+		</ol>
+	</main>
+
+	<nav class="footer">
+		<a class="footer__link" href="/?id={{ lastTweet.id }}">Next batch &rarr;</a>
+	</nav>
 
 </body>
 </html>
