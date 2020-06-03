@@ -34,7 +34,7 @@
 						<p class="tweet__text">{{{ text }}}</p>
 						<a href="https://twitter.com/{{ handle }}/status/{{ id }}" class="meta tweet__meta">
 							<span class="tweet__user">{{ name }} (@{{ handle }})</span>
-							{{# rt }}<span class="tweet__via">RT’d by {{ via_name }} (@{{ via_handle }})</span>{{/ rt }}
+							{{# is_rt }}/ <span class="tweet__via">RT by {{ via_name }} (@{{ via_handle }})</span>{{/ is_rt }}
 							/ Open&nbsp;twitter&nbsp;&rarr;
 						</a>
 					</figcaption>
