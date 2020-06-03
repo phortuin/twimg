@@ -26,7 +26,7 @@ $ npm run dev:vercel
 
 ## Todo
 - [ ] oAuth login instead of Twitter consumer tokens
-- [ ] Pretty styling & mobile first design
+- [x] Pretty styling & mobile first design
 - [ ] Save images directly to Dropbox or other Cloud drive service 🤔
 - [ ] Play videos inline
 
