@@ -63,6 +63,18 @@ figure {
 	text-shadow: 0 0 0.625em black;
 }
 
+.media__save-button button {
+	position: absolute;
+	margin-top: -2em;
+	appearance: none;
+	height: 2em;
+	border: 0;
+	background: white;
+	padding: 0.25em 0.5em;
+	font-family: 'SF Mono', 'Menlo', monospace;
+	font-size: 0.6375em;
+}
+
 .tweet {
 	flex: 0 0 33%;
 }

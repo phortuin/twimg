@@ -7,6 +7,7 @@
     "TWITTER_ACCESS_TOKEN_SECRET": "@twitter_access_token_secret"
   },
   "rewrites": [
-    { "source": "/", "destination": "/api/list.js" }
+    { "source": "/", "destination": "/api/list.js" },
+    { "source": "/image", "destination": "/api/save-image-to-dropbox.js" }
   ]
 }
