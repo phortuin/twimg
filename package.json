@@ -1,6 +1,6 @@
 {
   "name": "twimg",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "description": "Browse twitter home timeline by media only",
   "license": "MIT",
   "homepage": "https://github.com/phortuin/twimg",
@@ -8,7 +8,7 @@
     "name": "Anne Fortuin",
     "url": "phortuin.nl"
   },
-  "repository": "phortuin/now-dropbox-journal",
+  "repository": "phortuin/twimg",
   "engines": {
     "node": ">=12"
   },
