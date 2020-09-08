@@ -6,8 +6,8 @@
     "TWITTER_ACCESS_TOKEN_KEY": "@twitter_access_token_key",
     "TWITTER_ACCESS_TOKEN_SECRET": "@twitter_access_token_secret"
   },
-  "rewrites": [
-    { "source": "/", "destination": "/api/list.js" },
-    { "source": "/image", "destination": "/api/save-image-to-dropbox.js" }
+  "routes": [
+    { "src": "/", "dest": "/api/list.js" },
+    { "src": "/image", "methods": ["POST"], "dest": "/api/save-image-to-dropbox.js" }
   ]
 }
