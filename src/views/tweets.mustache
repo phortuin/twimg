@@ -10,6 +10,8 @@
 
 <body>
 
+	<iframe class="iframe-hidden" name="savetarget" src="" frameborder="0" allowtransparency="true"></iframe>
+
 	<div class="meta rate__header" role="dialog" aria-labelledby="rate-title" aria-describedby="rate-description">
 		<span id="rate-title">Rate info</span>:<br>
 		<span id="rate-description">
@@ -28,7 +30,7 @@
 						<li class="media media__{{ type }}">
 							<img src="{{ url }}">
 							{{^ is_video }}
-							<form class="media__save-button" method="post" action="/image">
+							<form class="media__save-button" method="post" action="/image" target="savetarget">
 								<input type="hidden" name="url" value="{{ url }}">
 								<input type="hidden" name="handle" value="{{# is_rt }}{{ via_handle }}-{{/ is_rt }}{{ handle }}">
 								<button>Save to Dropbox</button>
