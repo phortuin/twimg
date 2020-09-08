@@ -4,7 +4,8 @@
     "TWITTER_CONSUMER_KEY": "@twitter_consumer_key",
     "TWITTER_CONSUMER_SECRET": "@twitter_consumer_secret",
     "TWITTER_ACCESS_TOKEN_KEY": "@twitter_access_token_key",
-    "TWITTER_ACCESS_TOKEN_SECRET": "@twitter_access_token_secret"
+    "TWITTER_ACCESS_TOKEN_SECRET": "@twitter_access_token_secret",
+    "DROPBOX_ACCESS_TOKEN": "@twimg_dropbox_access_token"
   },
   "routes": [
     { "src": "/", "dest": "/api/list.js" },
