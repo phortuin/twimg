@@ -18,10 +18,7 @@ module.exports = async (request, response) => {
 	}
 
 	await dropboxApi.filesSaveUrl(options)
-		.then(() => {
-			response.status(204)
-			response.setHeader('Location', '/')
-		})
+		.then(() => response.status(204))
 		.catch(error => {
 			response.status(error.status)
 			response.end(errorPage(`Could not save image: "${ error.error.error_summary }"`))
