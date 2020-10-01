@@ -113,18 +113,38 @@ figure {
 	main {
 		padding: 1.25rem;
 	}
+
 	figure {
 		display: flex;
 	}
+
 	figcaption {
 		position: sticky;
 		padding: 0 1.25rem;
 		top: 0;
 	}
+
 	.tweet__text {
 		font-size: 1.25rem;
 		margin: 0.5rem 0 1.25rem;
 		padding: 0;
+	}
+
+	.media__orientation-portrait {
+		background: #ddd;
+	}
+
+	.media__orientation-portrait img {
+		max-height: 95vh;
+		width: auto;
+		margin: 0 auto;
+	}
+
+}
+
+@media (min-width: 1440px) {
+	main {
+		max-width: 72rem;
 	}
 }
 

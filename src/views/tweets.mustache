@@ -27,7 +27,7 @@
 				<figure>
 					<ul class="media__list">
 					{{# media }}
-						<li class="media media__{{ type }}">
+						<li class="media media__{{ type }} media__orientation-{{ orientation }}">
 							<img src="{{ url }}">
 							{{^ is_video }}
 							<form class="media__save-button" method="post" action="/image" target="savetarget">
