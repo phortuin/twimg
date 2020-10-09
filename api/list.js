@@ -3,14 +3,17 @@ const render = require('../lib/render')
 const twitter = require('../lib/twitter-instance')
 const rateLimitInfo = require('../lib/rate-limit-info')
 
-const isRateLimitExceededError = error => error.errors[0].code == 88
+const isRateLimitExceededError = error => error.errors && error.errors[0].code == 88 || false
 
 module.exports = async (request, response) => {
 	twitter.timeline(request.query.id)
 		.then(data => render('tweets', data))
 		.then(html => response.end(html))
 		.catch(error => {
-			const rateLimit = rateLimitInfo(error._headers)
+			let rateLimit = {}
+			if (error._headers) {
+				rateLimit = rateLimitInfo(error._headers)
+			}
 			const message = getErrorMessage(error, rateLimit)
 			if (isRateLimitExceededError(error)) {
 				response.setHeader('Retry-After', rateLimit.secondsToReset)
@@ -23,10 +26,15 @@ module.exports = async (request, response) => {
 }
 
 function getErrorMessage(error, rateLimit) {
-	const errorMessage = error.errors
+	let errorMessage = error.errors
 		? error.errors.map(_err => `${_err.message} (${_err.code})`).join('; ')
 		: error
-	return isRateLimitExceededError(error)
-		? errorMessage + `; Reset in ${rateLimit.minutesToReset} minutes`
-		: errorMessage + `; ${rateLimit.remaining} / ${rateLimit.limit} requests remaining`
+	if (rateLimit) {
+		if (isRateLimitExceededError(error)) {
+			errorMessage += `; Reset in ${rateLimit.minutesToReset} minutes`
+		} else {
+			errorMessage += `; ${rateLimit.remaining} / ${rateLimit.limit} requests remaining`
+		}
+	}
+	return errorMessage
 }
