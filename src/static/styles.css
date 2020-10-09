@@ -48,8 +48,7 @@ figure {
 	position: relative;
 }
 
-.media__video::before,
-.media__animated_gif::before {
+[data-video-action="play"]::before {
 	display: flex;
 	content: "►";
 	font-size: 4em;
@@ -61,6 +60,7 @@ figure {
 	height: 100%;
 	color: white;
 	text-shadow: 0 0 0.625em black;
+	cursor: pointer;
 }
 
 .media__save-button button {
@@ -153,4 +153,8 @@ figure {
 	width: 0;
 	height: 0;
 	margin: 0;
+}
+
+video {
+	width: 100%;
 }

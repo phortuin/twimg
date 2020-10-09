@@ -27,9 +27,12 @@
 				<figure>
 					<ul class="media__list">
 					{{# media }}
-						<li class="media media__{{ type }} media__orientation-{{ orientation }}">
-							<img src="{{ url }}">
+						<li class="media media__{{ type }} media__orientation-{{ orientation }}" {{# is_video }}data-video-action="play"{{/ is_video }}>
+							{{# is_video }}
+							<video src="{{ url }}" loop />
+							{{/ is_video }}
 							{{^ is_video }}
+							<img src="{{ url }}">
 							<form class="media__save-button" method="post" action="/image" target="savetarget">
 								<input type="hidden" name="url" value="{{ url }}">
 								<input type="hidden" name="handle" value="{{# is_rt }}{{ via_handle }}-{{/ is_rt }}{{ handle }}">
@@ -56,6 +59,21 @@
 	<nav class="footer">
 		<a class="footer__link" href="/?id={{ lastTweet.id }}">Next batch &rarr;</a>
 	</nav>
+
+	<script>
+		Array.from(document.querySelectorAll('[data-video-action]')).forEach(containerEl => {
+			const videoEl = containerEl.querySelector('video')
+			let action = containerEl.dataset.videoAction
+
+			function togglePlayPause(event) {
+				event.target[action]()
+				action = action == 'play' ? 'pause' : 'play'
+				containerEl.dataset.videoAction = action
+			}
+
+			videoEl.addEventListener('click', togglePlayPause)
+		})
+	</script>
 
 </body>
 </html>
