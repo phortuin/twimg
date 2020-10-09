@@ -29,7 +29,7 @@ $ npm run dev:vercel
 - [ ] Dropbox oAuth login instead of access token
 - [x] Pretty styling & mobile first design
 - [x] Button to save images directly to Dropbox
-- [ ] Play videos inline
+- [x] Play videos inline
 
 ## License
 [MIT](license) © [Anne Fortuin](https://phortuin.nl/)
