@@ -54,9 +54,9 @@ figure {
 	display: block;
 	content: "";
 	position: absolute;
-	left: calc(100% + 0.1875em);
+	left: calc(50% + 0.25em);
 	top: 50%;
-	width: 100%;
+	width: auto;
 	transform: translateX(-50%) translateY(-50%);
 	font-size: 1.25em;
 	cursor: pointer;
