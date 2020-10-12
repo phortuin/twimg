@@ -76,7 +76,9 @@ figure {
 	height: 4em;
 	transform: translateX(-50%) translateY(-50%);
 	border-radius: 50%;
-	background-color: rgba(0, 0, 0, 0.35);
+	background-color: hsla(180, 100%, 25%, 0.3);
+	backdrop-filter: blur(0.1875em);
+	border: 0.25em solid white;
 }
 
 .media__save-button button {
