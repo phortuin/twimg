@@ -12,6 +12,7 @@ body {
 	padding: 0;
 	margin: 0;
 	line-height: 1.45;
+	font-size: 100%;
 }
 
 main {
@@ -48,19 +49,34 @@ figure {
 	position: relative;
 }
 
-[data-video-action="play"]::before {
-	display: flex;
-	content: "►";
-	font-size: 4em;
-	flex-direction: column;
-	align-items: center;
-	justify-content: center;
+/* play icon */
+[data-video-status="pause"]::after {
+	display: block;
+	content: "";
 	position: absolute;
+	left: calc(100% + 0.1875em);
+	top: 50%;
 	width: 100%;
-	height: 100%;
-	color: white;
-	text-shadow: 0 0 0.625em black;
+	transform: translateX(-50%) translateY(-50%);
+	font-size: 1.25em;
 	cursor: pointer;
+	border: 1em transparent solid;
+	border-right: 0;
+	border-left: 1.625em white solid;
+}
+
+/* circle around play icon */
+[data-video-status="pause"]::before {
+	display: block;
+	content: "";
+	position: absolute;
+	left: 50%;
+	top: 50%;
+	width: 4em;
+	height: 4em;
+	transform: translateX(-50%) translateY(-50%);
+	border-radius: 50%;
+	background-color: rgba(0, 0, 0, 0.35);
 }
 
 .media__save-button button {

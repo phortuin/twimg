@@ -27,14 +27,14 @@
 				<figure>
 					<ul class="media__list">
 					{{# media }}
-						<li class="media media__{{ type }} media__orientation-{{ orientation }}" {{# is_video }}data-video-action="play"{{/ is_video }}>
+						<li class="media media__{{ type }} media__orientation-{{ orientation }}" {{# is_video }}data-video-status="pause"{{/ is_video }}>
 							{{# is_video }}
-							<video src="{{ url }}" loop />
+							<video src="{{ video_url }}" poster="{{ image_url }}" loop playsinline>
 							{{/ is_video }}
 							{{^ is_video }}
-							<img src="{{ url }}">
+							<img src="{{ image_url }}">
 							<form class="media__save-button" method="post" action="/image" target="savetarget">
-								<input type="hidden" name="url" value="{{ url }}">
+								<input type="hidden" name="url" value="{{ image_url }}">
 								<input type="hidden" name="handle" value="{{# is_rt }}{{ via_handle }}-{{/ is_rt }}{{ handle }}">
 								<button>Save to Dropbox</button>
 							</form>
@@ -61,17 +61,15 @@
 	</nav>
 
 	<script>
-		Array.from(document.querySelectorAll('[data-video-action]')).forEach(containerEl => {
+		Array.from(document.querySelectorAll('[data-video-status]')).forEach(containerEl => {
 			const videoEl = containerEl.querySelector('video')
-			let action = containerEl.dataset.videoAction
+			let status = containerEl.dataset.videoStatus
 
-			function togglePlayPause(event) {
-				event.target[action]()
-				action = action == 'play' ? 'pause' : 'play'
-				containerEl.dataset.videoAction = action
-			}
-
-			videoEl.addEventListener('click', togglePlayPause)
+			containerEl.addEventListener('click', event => {
+				status = status == 'play' ? 'pause' : 'play'
+				videoEl[status]()
+				containerEl.dataset.videoStatus = status
+			})
 		})
 	</script>
 
