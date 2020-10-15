@@ -2,7 +2,6 @@ const fetch = require('node-fetch')
 const Dropbox = require('dropbox').Dropbox
 
 const errorPage = require('../lib/error-page')
-const render = require('../lib/render')
 
 const { basename } = require('path')
 
