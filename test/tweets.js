@@ -20,11 +20,11 @@ const expectedTweetEmpty = {
 }
 
 test('Creates empty tweetobject', t => {
-	t.plan(1)
 	t.deepLooseEqual(tweet.create(), expectedTweetEmpty)
+	t.end()
 })
 
 test('Creates tweetobject', t => {
-	t.plan(1)
 	t.deepLooseEqual(expectedTweet, tweet.create(tweetData))
+	t.end()
 })
