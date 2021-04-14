@@ -1,4 +1,4 @@
-const errorPage = require('../lib/error-page')
+const { errorPage } = require('../lib/page')
 const render = require('../lib/render')
 const twitter = require('../lib/twitter-instance')
 const rateLimitInfo = require('../lib/rate-limit-info')
