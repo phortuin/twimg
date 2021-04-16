@@ -18,6 +18,8 @@ $ npm run dev:vercel
 - Read [Vercel docs](https://vercel.com/docs/cli#commands/secrets) on creating secrets/environment variables to get this app to run on your own Vercel account.
 - Twitter limits user requests to 15 per 15 minutes. 200 tweets can be retrieved from the API at a time, with a max of 800. The ‘media only’-filtering done in this app will reduce that number further.
 - Using your Twitter consumer key & secret as an environment variable is generally a bad idea; use at your own peril.
+- Twitter tokens are stored in an [UpStash Redis Database](https://www.upstash.com/) with TLS encryption.
+- No CSRF token because cookie policy is `HttpOnly; Secure; SameSite=Strict`.
 
 ### Tech
 - Uses [Vercel](https://vercel.com/) (formerly Zeit Now) serverless functions
@@ -33,3 +35,8 @@ $ npm run dev:vercel
 
 ## License
 [MIT](license) © [Anne Fortuin](https://phortuin.nl/)
+
+
+https://api.slack.com/authentication/best-practices
+https://medium.com/@d.silvas/how-to-implement-csrf-protection-on-a-jwt-based-app-node-csurf-angular-bb90af2a9efd
+https://en.wikipedia.org/wiki/Cross-site_request_forgery#Prevention
