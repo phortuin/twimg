@@ -1,4 +1,4 @@
-const middleware = require('../lib/middleware')
+const { authenticate, handleErrors } = require('../lib/middleware')
 const { getTimeline } = require('../lib/twitter-instance')
 const render = require('../lib/render')
 
@@ -7,12 +7,8 @@ const render = require('../lib/render')
  * an authenticated twitter client, which is handled by the authenticate
  * middleware.
  */
-module.exports = middleware.authenticate(async (req, res) => {
-	try {
-		const timeline = await getTimeline(req.query.id)
-		const html = await render('tweets', timeline)
-		res.send(html)
-	} catch(error) {
-		middleware.handleError(error)(req, res)
-	}
-})
+module.exports = authenticate(handleErrors(async (req, res) => {
+	const timeline = await getTimeline(req.query.id)
+	const html = await render('tweets', timeline)
+	res.send(html)
+}))
