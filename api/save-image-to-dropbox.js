@@ -1,9 +1,13 @@
+// Core
+const { basename } = require('path')
+
+// NPM
 const fetch = require('node-fetch')
 const Dropbox = require('dropbox').Dropbox
 
+// Local
 const { errorPage } = require('../lib/page')
-
-const { basename } = require('path')
+const { httpStatus } = require('../lib/constants')
 
 module.exports = async (request, response) => {
 	const { body, headers } = request
@@ -17,7 +21,7 @@ module.exports = async (request, response) => {
 	}
 
 	await dropboxApi.filesSaveUrl(options)
-		.then(() => response.status(204))
+		.then(() => response.status(httpStatus.NO_CONTENT))
 		.catch(error => {
 			response.status(error.status)
 			response.end(errorPage(`Could not save image: "${ error.error.error_summary }"`))
