@@ -1,40 +1,18 @@
-const { errorPage } = require('../lib/page')
+const middleware = require('../lib/middleware')
+const { getTimeline } = require('../lib/twitter-instance')
 const render = require('../lib/render')
-const twitter = require('../lib/twitter-instance')
-const rateLimitInfo = require('../lib/rate-limit-info')
 
-const isRateLimitExceededError = error => error.errors && error.errors[0].code == 88 || false
-
-module.exports = async (request, response) => {
-	twitter.timeline(request.query.id)
-		.then(data => render('tweets', data))
-		.then(html => response.end(html))
-		.catch(error => {
-			let rateLimit = {}
-			if (error._headers) {
-				rateLimit = rateLimitInfo(error._headers)
-			}
-			const message = getErrorMessage(error, rateLimit)
-			if (isRateLimitExceededError(error)) {
-				response.setHeader('Retry-After', rateLimit.secondsToReset)
-				response.status(429) // Too Many Requests
-			} else {
-				response.status(500)
-			}
-			response.end(errorPage(message))
-		})
-}
-
-function getErrorMessage(error, rateLimit) {
-	let errorMessage = error.errors
-		? error.errors.map(_err => `${_err.message} (${_err.code})`).join('; ')
-		: error
-	if (rateLimit) {
-		if (isRateLimitExceededError(error)) {
-			errorMessage += `; Reset in ${rateLimit.minutesToReset} minutes`
-		} else {
-			errorMessage += `; ${rateLimit.remaining} / ${rateLimit.limit} requests remaining`
-		}
+/**
+ * Gets timeline data from twitter and renders them. This route needs
+ * an authenticated twitter client, which is handled by the authenticate
+ * middleware.
+ */
+module.exports = middleware.authenticate(async (req, res) => {
+	try {
+		const timeline = await getTimeline(req.query.id)
+		const html = await render('tweets', timeline)
+		res.send(html)
+	} catch(error) {
+		middleware.handleError(error)(req, res)
 	}
-	return errorMessage
-}
+})
