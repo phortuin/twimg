@@ -1,15 +1,15 @@
 const { handleErrors } = require('../lib/middleware')
 const twitter = require('../lib/twitter-instance')
 const { createUserSession } = require('../lib/redis-instance') // @todo should come from session lib which implements redis
-const { set: setCookie } = require('../lib/cookie') // @todo should be setSession
 const { page } = require('../lib/page')
 
 /**
  * Our end point for Twitter’s incoming oauth redirect. The oauth token and
  * verifier are passed as query parameters. If they are missing, a 400 error is
  * thrown. If they are present, permanent credentials are requested from Twitter
- * and stored in a session. The session ID is persisted with a cookie to the
- * front-end. Finally, a page is rendered to proceed to TWIMG’s home page.
+ * and stored in a session. The session ID is persisted with a session cookie to
+ * the front-end. Finally, a page is rendered to let the user proceed to TWIMG’s
+ * home page.
  *
  * Notes on cookies and CSRF:
  * - The cookie is secure, httponly and has samesite=strict settings. Even
@@ -43,6 +43,6 @@ module.exports = handleErrors(async (request, response) => {
 	}
 	const credentials = await twitter.getAccessToken(oauth_token, oauth_verifier)
 	const sessionId = await createUserSession(credentials)
-	response.setHeader('Set-Cookie', setCookie('session_id', sessionId))
+	response.setHeader('Set-Cookie', `session_id=${sessionId}; HttpOnly; Secure; SameSite=Strict; path=/`)
 	response.send(page('Logged in', `<a href="/">Proceed to T/W/I/M/G</a>`))
 })
