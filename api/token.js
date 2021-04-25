@@ -43,6 +43,6 @@ module.exports = handleErrors(async (request, response) => {
 	}
 	const credentials = await twitter.getAccessToken(oauth_token, oauth_verifier)
 	const sessionId = await createUserSession(credentials)
-	response.setHeader('Set-Cookie', `session_id=${sessionId}; HttpOnly; Secure; SameSite=Strict; path=/`)
+	response.setHeader('Set-Cookie', `session_id=${sessionId}; HttpOnly; Secure; SameSite=Strict; Path=/`)
 	response.send(page('Logged in', `<a href="/">Proceed to T/W/I/M/G</a>`))
 })
