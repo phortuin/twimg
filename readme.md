@@ -29,6 +29,8 @@ Deploy with Vercel. You can set environment variables in your Vercel app with th
 - That’s about it
 
 ## Todo
+- [ ] Refactor redis-instance to session manager
+- [ ] Refactor cookie script and let session be an actual session cookie
 - [ ] Dropbox oAuth login instead of access token
 - [ ] Update cookie expiry after succesful authentication
 - [ ] Lazy loading of images
