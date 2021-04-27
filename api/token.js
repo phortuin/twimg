@@ -43,6 +43,18 @@ module.exports = handleErrors(async (request, response) => {
 	}
 	const credentials = await twitter.getAccessToken(oauth_token, oauth_verifier)
 	const sessionId = await createUserSession(credentials)
-	response.setHeader('Set-Cookie', `session_id=${sessionId}; HttpOnly; Secure; SameSite=Strict; Path=/`)
+	response.setHeader('Set-Cookie', `session_id=${sessionId}; HttpOnly; Secure; SameSite=Strict; Path=/; Expires=${getDateNextYear()}`)
 	response.send(page('Logged in', `<a href="/">Proceed to T/W/I/M/G</a>`))
 })
+
+/**
+ * Finds the current date plus one year as a UTC date. Useful for setting
+ * cookie expiry date.
+ *
+ * @return {String}
+ */
+function getDateNextYear() {
+	const date = new Date()
+	date.setFullYear(date.getFullYear() + 1)
+	return date.toUTCString()
+}
