@@ -21,7 +21,7 @@
   "dependencies": {
     "dropbox": "^5.2.1",
     "mustache": "^4.0.1",
-    "node-fetch": "^2.6.1",
+    "node-fetch": "^3.1.1",
     "redis": "^3.0.2",
     "twitter-lite": "^0.13.0"
   },
