@@ -2,6 +2,8 @@
 
 > Browse twitter home timeline by media only
 
+### 🚧 Abandoned project. I no longer have a Twitter account, for obvious reasons
+
 One-page website that renders tweets from your home timeline that have media attached (image, video). Images shown in a large format, easy to right-click-save or save to Dropbox.
 
 ## Development
